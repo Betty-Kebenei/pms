@@ -1,4 +1,4 @@
-import db from '../models';
+const db = require ('../models');
 
 class LocationService {
   static async getAllLocations() {
@@ -69,4 +69,4 @@ class LocationService {
   }
 }
 
-export default LocationService;
+module.exports = LocationService;

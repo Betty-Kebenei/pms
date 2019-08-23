@@ -1,8 +1,8 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import routes from './routes/routes';
-import dotenv from 'dotenv';
-import cors from 'cors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const routes = require('./routes/routes');
+const dotenv = require('dotenv');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -25,4 +25,4 @@ app.listen(port, () => {
    console.log(`Server is running on PORT ${port}`);
 });
 
-export default app;
+module.exports = app;

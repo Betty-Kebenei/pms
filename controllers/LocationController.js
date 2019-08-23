@@ -1,5 +1,5 @@
-import LocationService from '../services/LocationService';
-import Util from '../utils/Utils';
+const LocationService = require('../services/LocationService');
+const Util = require ('../utils/Utils');
 
 const util = new Util();
 
@@ -130,4 +130,4 @@ class LocationController {
   }
 }
 
-export default LocationController;
+module.exports = LocationController;

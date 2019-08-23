@@ -1,7 +1,7 @@
-import chai from 'chai';
-import chatHttp from 'chai-http';
-import 'chai/register-should';
-import app from '../index';
+const chai = require('chai');
+const chatHttp = require('chai-http');
+require('chai/register-should');
+const app = require('../index');
 
 chai.use(chatHttp);
 const { expect } = chai;

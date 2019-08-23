@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import LocationController from '../controllers/LocationController';
+const { Router } = require('express');
+const LocationController = require ('../controllers/LocationController');
 
 const router = Router();
 
@@ -9,4 +9,4 @@ router.get('/:id', LocationController.getALocation);
 router.put('/:id', LocationController.updatedLocation);
 router.delete('/:id', LocationController.deleteLocation);
 
-export default router;
+module.exports = router;
