@@ -7,7 +7,7 @@ chai.use(chatHttp);
 const { expect } = chai;
 
 describe('Location:', () => {
-  it('It should post a location', (done) => {
+  it('should post a location', (done) => {
     const data = {
       "name": "first testing location",
       "males": 20000,
@@ -24,7 +24,7 @@ describe('Location:', () => {
       });
   });
 
-  it('It should not post a location if data is absent', (done) => {
+  it('should not post a location if data is absent', (done) => {
     const data = {}
     chai.request(app)
       .post('/api/v1/locations')
@@ -36,7 +36,7 @@ describe('Location:', () => {
       });
   });
 
-  it('It should post a sub-location', (done) => {
+  it('should post a sub-location', (done) => {
     const data = {
       "name": "sublocation",
       "males": 10000,
@@ -54,7 +54,7 @@ describe('Location:', () => {
       });
   });
 
-  it('It should not post a location if there is no parent location', (done) => {
+  it('should not post a location if there is no parent location', (done) => {
     const data = {
       "name": "sublocation 2",
       "males": 10000,

@@ -30,17 +30,22 @@ class LocationController {
     if(req.body.parent_id) {
       try {
         const theLocation = await LocationService.getALocation(req.body.parent_id);
-
         if (!theLocation) {
           util.setError(404, `Cannot find parent Location with the id ${req.body.parent_id}`);
         } else {
-          try {
-            const createdLocation = await LocationService.addLocation(newLocation);
-            util.setSuccess(201, 'Location Added!', createdLocation);
-            return util.send(res);
-          } catch (error) {
-            util.setError(400, error.message);
-            return util.send(res);
+          const subLocationsTotal = await LocationService.getSumOfSublocationsTotal(req.body.parent_id);
+          if((subLocationsTotal+req.body["total"]) > theLocation.location.total) {
+            util.setError(400, `Sum of the totals of sublocations cannot be greater than the total on the location`);
+          }
+          else {
+            try {
+              const createdLocation = await LocationService.addLocation(newLocation);
+              util.setSuccess(201, 'Location Added!', createdLocation);
+              return util.send(res);
+            } catch (error) {
+              util.setError(400, error.message);
+              return util.send(res);
+            }
           }
         }
         return util.send(res);
@@ -93,6 +98,7 @@ class LocationController {
 
     try {
       const theLocation = await LocationService.getALocation(id);
+      console.log(theLocation.location.total)
 
       if (!theLocation) {
         util.setError(404, `Cannot find Location with the id ${id}`);

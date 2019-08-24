@@ -34,6 +34,23 @@ class LocationService {
     }
   }
 
+  static async getSumOfSublocationsTotal(id) {
+    try {
+      await db.Location.findOne({
+        where: { id: Number(id) }
+      });
+      let subLocationsTotal;
+      await db.Location.sum('total', {where: { parent_id: Number(id) }}).then(sum => {
+        subLocationsTotal=sum;
+      });
+
+      return subLocationsTotal;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
   static async getALocation(id) {
     try {
       const location = await db.Location.findOne({
